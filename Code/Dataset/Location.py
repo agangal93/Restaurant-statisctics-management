@@ -1,21 +1,13 @@
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import pandas as pd
 import math
 import statistics
 import random
-from scipy.stats import norm
+#from scipy.stats import norm
 import Common
 
 class Location:
-
-    def __init__(self):
-        self.east_zone = ["New York", "Maryland", "Virginia", "New Jersey"]
-        self.north_zone = ["Wisconsin", "Minnesota", "North Dakota", "Michigan"]
-        self.west_zone = ["California", "Washington", "Arizona", "Oregon"]
-        self.south_zone = ["Texas", "New Mexico", "Mississippi", "Georgia"]
-        self.central_zone = ["Colorado", "Utah", "Nebraska", "Kansas"]
-        self.zone_data = {0:"EZ", 1:"NZ", 2:"WZ", 3:"SZ", 4:"CZ"}
     
     def CreateLocationDataset(self):
         H = Common.Helper()
@@ -29,13 +21,13 @@ class Location:
         for column in range(1,df.shape[1]):
             for row in range(1,df.shape[0]):
                 value = df.iloc[row][column]
-                if df.iloc[row][0] in self.east_zone:
+                if df.iloc[row][0] in H.GetEastZone():
                     east_food[column-1] = east_food[column-1] + value
-                elif df.iloc[row][0] in self.north_zone:
+                elif df.iloc[row][0] in H.GetNorthZone():
                     north_food[column-1] = north_food[column-1] + value
-                elif df.iloc[row][0] in self.west_zone:
+                elif df.iloc[row][0] in H.GetWestZone():
                     west_food[column-1] = west_food[column-1] + value
-                elif df.iloc[row][0] in self.south_zone:
+                elif df.iloc[row][0] in H.GetSouthZone():
                     south_food[column-1] = south_food[column-1] + value
                 else:
                     central_food[column-1] = central_food[column-1] + value
@@ -54,21 +46,21 @@ class Location:
         H.CalPercentage(south_food,base)
         H.CalPercentage(central_food,base)
         zone_food = np.stack((east_food,north_food,west_food,south_food,central_food))
-        print(zone_food)
+        #print(zone_food)
 
         num_rows = len(zone_food)
         num_columns = len(zone_food[0])
 
         total_zone = [0] * num_rows
         H.GetTotalForRows(zone_food,total_zone,num_rows)
-        print(total_zone)
+        #print(total_zone)
 
         # Find scaled percentages
         for value in range(0,num_rows):
             H.CalPercentage(zone_food[value],total_zone[value])
 
-        print("Scaled percentage")
-        print(zone_food)
+        #print("Scaled percentage")
+        #print(zone_food)
 
         num_entries = 500
 
@@ -85,8 +77,8 @@ class Location:
                 zone_food[row][random.randint(0,num_rows-1)] += 1
                 error -= 1
 
-        print("Correction") 
-        print(zone_food)
+        #print("Correction") 
+        #print(zone_food)
         count = np.zeros((num_rows,num_columns))
         Foodtype = H.GetFoodType();
         FoodData = H.GetFoodData();
@@ -97,7 +89,8 @@ class Location:
         for type in range(1,len(FoodData)):
             if max < len(Foodtype.get(FoodData.get(type))):
                 max = len(Foodtype.get(FoodData.get(type)))
-
+        
+        zone_data = H.GetZoneData()
         FoodCategory = np.zeros(max)
         for entry in range(0,num_entries):    
             row = random.randint(0,num_rows-1)
@@ -105,7 +98,7 @@ class Location:
             while(count[row][column] >= zone_food[row][column]):
                 row = random.randint(0,num_rows-1)
                 column = random.randint(0, num_columns-1)
-            ZoneValue = self.zone_data.get(row)
+            ZoneValue = zone_data.get(row)
             FoodType = FoodData.get(column)
             FoodCategory = Foodtype.get(FoodType)
             FoodEntry = FoodCategory[random.randint(0,len(FoodCategory)-1)]

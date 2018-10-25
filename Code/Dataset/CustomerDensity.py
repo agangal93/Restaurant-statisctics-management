@@ -13,7 +13,8 @@ class DensityTime:
         self.snacks_time = ["16:00", "17:00"]
         self.dinner_time = ["18:00", "19:00", "20:00","21:00","22:00","23:00"]
         self.food_type = {"Breakfast":self.breakfast_time,"Lunch":self.lunch_time,"Snacks":self.snacks_time,"Dinner":self.dinner_time}
-        self.customer_per_time = {"Breakfast":50, "Lunch":200, "Snacks":20, "Dinner":230}
+        self.customer_per_time = {"Breakfast":15, "Lunch":30, "Snacks":5, "Dinner":50}
+        self.num_customers_per_day = 500
 
     def GetKeyByValue(self,dictOfWords, Value):
         for (key, value) in dictOfWords.items():
@@ -24,10 +25,19 @@ class DensityTime:
     def GetFoodCategory(self,Time):
         return self.GetKeyByValue(self.food_type,Time)
 
+    def RoundingCorrection(self,arr,perc):
+        entries_per_type = math.floor((perc/100)*self.num_customers_per_day)
+        length = len(arr)
+        for row in range(0,length):
+            total = sum(arr)
+            error = entries_per_type - total
+            while error > 0:
+                arr[random.randint(0,length-1)] += 1
+                error -= 1
+
     def CreateDensityTime(self):
         H = Common.Helper()
 
-        num_customers_per_day = 500
         breakfast_menu = []
         breakfast_menu.append(H.Foodtype.get("Bakeries"))
         breakfast_menu.append(H.Foodtype.get("Sandwich shop"))
@@ -62,20 +72,56 @@ class DensityTime:
                 base = self.customer_per_time.get("Snacks")
             else:
                 base = self.customer_per_time.get("Dinner")
+            base = (base/100)*self.num_customers_per_day
             Time_list[row][1] = math.floor((Time_list[row][1]/100)*base)
 
-        print(Time_list)
+        #print(Time_list)
+        Breakfast_density = []
+        Lunch_density = []
+        Snacks_density = []
+        Dinner_density = []
+        for row in range(0,num_rows):
+            if Time_list[row][0] in self.breakfast_time:
+                Breakfast_density.append(Time_list[row][1])
+            elif Time_list[row][0] in self.lunch_time:
+                Lunch_density.append(Time_list[row][1])
+            elif Time_list[row][0] in self.snacks_time:
+                Snacks_density.append(Time_list[row][1])
+            else:
+                Dinner_density.append(Time_list[row][1])
+        
+        self.RoundingCorrection(Breakfast_density,self.customer_per_time.get("Breakfast"))
+        self.RoundingCorrection(Lunch_density,self.customer_per_time.get("Lunch"))
+        self.RoundingCorrection(Snacks_density,self.customer_per_time.get("Snacks"))
+        self.RoundingCorrection(Dinner_density,self.customer_per_time.get("Dinner"))
 
-        # Add correction
-
-
+        total_timezone = [0] * 4
+        for row in range(0,num_rows):
+            if Time_list[row][0] in self.breakfast_time:
+                total_timezone[0] += Time_list[row][1]
+            elif Time_list[row][0] in self.lunch_time:
+                total_timezone[1] += Time_list[row][1]
+            elif Time_list[row][0] in self.snacks_time:
+                total_timezone[2] += Time_list[row][1]
+            else:
+                total_timezone[3] += Time_list[row][1]
+        
+        # Rounding correction
+        length1 = len(self.breakfast_time)
+        length2 = length1+len(self.lunch_time)
+        length3 = length2+len(self.snacks_time)
+        Time_list[random.randint(0,length1-1)][1] += (sum(Breakfast_density) - total_timezone[0])
+        Time_list[random.randint(length1,length2-1)][1] += (sum(Lunch_density) - total_timezone[1])
+        Time_list[random.randint(length2,length3-1)][1] += (sum(Snacks_density) - total_timezone[2])
+        Time_list[random.randint(length3,len(Time_list)-1)][1] += (sum(Dinner_density) - total_timezone[3])
+        #print(Time_list)
         TableEntry = list()
-        TableEntry = [[]]*num_customers_per_day
+        TableEntry = [[]]*self.num_customers_per_day
         count = np.zeros(num_rows)
-        for entry in range(0,num_customers_per_day):
+        for entry in range(0,self.num_customers_per_day):
             row = random.randint(0,num_rows-1)
-            #while(count[row] >= Time_list[row][1]):
-            #    row = random.randint(0,num_rows-1)
+            while(count[row] >= Time_list[row][1]):
+                row = random.randint(0,num_rows-1)
             FoodCategory = self.GetFoodCategory(Time_list[row][0])
             if FoodCategory == "Breakfast":
                 FoodEntry = breakfast_menu[random.randint(0,len(breakfast_menu)-1)]
@@ -88,6 +134,6 @@ class DensityTime:
             Entry_Value = FoodEntry[random.randint(0,len(FoodEntry)-1)]
             TableEntry[entry] = [Time_list[row][0],Time_list[row][1],Entry_Value]
             count[row] += 1
-
-        print(count)
+        
+        # Final entry values
         print(TableEntry)
