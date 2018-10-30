@@ -75,6 +75,7 @@ class Location:
         for row in range(0,num_rows):
             total = sum(zone_food[row,:])
             error = entries_per_zone - total
+            assert (error >= 0),"Error should not be negative"
             while error > 0:
                 zone_food[row][random.randint(0,num_columns-1)] += 1
                 error -= 1
@@ -102,6 +103,7 @@ class Location:
             FoodType = FoodData.get(column)
             FoodCategory = Foodtype.get(FoodType)
             FoodEntry = FoodCategory[random.randint(0,len(FoodCategory)-1)]
+            assert (FoodEntry is not None),"Invalid Entry for %r Zone" % ZoneValue
             TableEntry[entry] = [ZoneValue,FoodEntry]
             self.FoodCount[row][H.GetFoodEntry().get(FoodEntry)] += 1
             count[row][column] += 1

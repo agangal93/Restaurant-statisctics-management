@@ -29,11 +29,13 @@ class DensityTime:
         return H.GetKeyByValue(self.food_type,Time,False)
 
     def RoundingCorrection(self,arr,perc):
+        assert (self.num_customers > 0),"Num of customers should be positive"
         entries_per_type = math.floor((perc/100)*self.num_customers)
         length = len(arr)
         for row in range(0,length):
             total = sum(arr)
             error = entries_per_type - total
+            assert (error >= 0),"Error should not be negative"
             while error > 0:
                 arr[random.randint(0,length-1)] += 1
                 error -= 1
@@ -45,6 +47,7 @@ class DensityTime:
         zone_key_list = [] * len(H.GetZoneData())
         ethnic_key_list = [[None for x in range(len(D.GetEthnicData()))] for y in range(len(H.GetZoneData()))] 
         index = H.GetFoodEntry().get(FoodEntry)
+        assert (index is not None),"Index value should be valid"
         for zone in range(0,len(H.GetZoneData())):
             if FoodCount[zone][index] != 0:
                 zone_key_list.append(zone)
@@ -102,6 +105,7 @@ class DensityTime:
             else:
                 base = self.customer_per_time.get("Dinner")
             base = (base/100)*self.num_customers
+            assert (base > 0), "Invalid base"
             Time_list[row][1] = math.floor((Time_list[row][1]/100)*base)
 
         #print(Time_list)
@@ -162,6 +166,7 @@ class DensityTime:
                 else:
                     Entry_Value = self.dinner_menu[random.randint(0,len(self.dinner_menu)-1)]
 
+                assert (Entry_Value is not None), "Invalid Food Entry"
                 Type_of_Food = H.GetFoodCategory(Entry_Value)
                 zone_key_list, ethnic_key_list = self.GetRandomizationRange(Entry_Value,FoodCount,EthnicCount)
 
@@ -170,6 +175,7 @@ class DensityTime:
 
                 retry_count = 10
                 Zone_Key = zone_key_list[random.randint(0,len(zone_key_list)-1)]
+                assert (Zone_Key is not None), "Invalid Zone key"
                 Zone = H.GetZoneData().get(Zone_Key)
                 if FoodCount[Zone_Key][H.GetFoodEntry().get(Entry_Value)] == 0:
                     while (FoodCount[Zone_Key][H.GetFoodEntry().get(Entry_Value)] == 0) and (retry_count > 0):
@@ -189,6 +195,7 @@ class DensityTime:
 
                 retry_count = 20
                 Ethnic_Key = ethnic_list_mod[random.randint(0,len(ethnic_list_mod)-1)]
+                assert (Ethnic_Key is not None), "Invalid Ethnic key"
                 Ethnicity = D.GetEthnicData().get(Ethnic_Key)
                 if EthnicCount[Zone_Key][Ethnic_Key] == 0:
                     while (EthnicCount[Zone_Key][Ethnic_Key] == 0) and (retry_count > 0):
@@ -199,7 +206,9 @@ class DensityTime:
                         continue
 
                 Price = H.GetPriceItem().get(Entry_Value)
+                assert (FoodCount[Zone_Key][H.GetFoodEntry().get(Entry_Value)] > 0)
                 FoodCount[Zone_Key][H.GetFoodEntry().get(Entry_Value)] -= 1
+                assert (EthnicCount[Zone_Key][Ethnic_Key] > 0)
                 EthnicCount[Zone_Key][Ethnic_Key] -= 1
 
                 self.TableEntry[entry] = [Time_list[row][0],Zone,Type_of_Food,Entry_Value,Price,Time_list[row][1],Ethnicity]

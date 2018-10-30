@@ -78,6 +78,7 @@ class Helper:
     def GetFoodCategory(self,Entry):
         for row in range(0,len(self.Foodtype)):
             type_item = self.food_data.get(row)
+            assert (type_item is not None),"Invalid food type"
             if Entry in self.Foodtype.get(type_item):
                 Type_of_Food = self.GetKeyByValue(self.Foodtype,self.Foodtype.get(type_item),True)
                 break

@@ -70,6 +70,7 @@ class EthnicState:
         for row in range(0,num_rows):
             total = sum(zone_food[row,:])
             error = entries_per_zone - total
+            assert (error >= 0),"Error should not be negative"
             while error > 0:
                 zone_food[row][random.randint(0,num_columns-1)] += 1
                 error -= 1
