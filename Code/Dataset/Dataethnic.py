@@ -10,7 +10,14 @@ import Common
 class EthnicState:
 
     def __init__(self):
-        self.ethnic_data = {0:"white", 1:"black", 2:"hispianic", 3:"asian"}
+        H = Common.Helper()
+        self.ethnic_data = {0:"white", 1:"black", 2:"hispianic", 3:"asian"}        
+        rows = len(H.GetZoneData())
+        columns = len(self.ethnic_data)
+        self.EthnicCount = np.zeros((rows,columns))
+
+    def GetEthnicData(self):
+        return self.ethnic_data
 
     def CreateEthnicset(self):
         H = Common.Helper()
@@ -53,10 +60,7 @@ class EthnicState:
         for value in range(0,num_rows):
             H.CalPercentage(zone_food[value],total_zone[value])
 
-        #print("Scaled percentage")
-        #print(zone_food)
-        num_entries = 500
-
+        num_entries = H.GetNumEntries()
         entries_per_zone = num_entries/num_rows
         for row in range(0,num_rows):
             for column in range(0,num_columns):
@@ -70,8 +74,6 @@ class EthnicState:
                 zone_food[row][random.randint(0,num_columns-1)] += 1
                 error -= 1
 
-        #print("Correction")
-        #print(zone_food)
         zone_data = H.GetZoneData()
         count = np.zeros((num_rows,num_columns))
         TableEntry = list()
@@ -85,9 +87,11 @@ class EthnicState:
             ZoneValue = zone_data.get(row)
             ethnic = self.ethnic_data.get(column)
             TableEntry[entry] = [ZoneValue,ethnic]
+            self.EthnicCount[row][column] += 1
             count[row][column] += 1
 
-        print(TableEntry)
+        return self.EthnicCount
+        #print(TableEntry)
         #plt.title('PDF')
         #plt.xlabel('Food Type')
         #plt.ylabel('Probability')

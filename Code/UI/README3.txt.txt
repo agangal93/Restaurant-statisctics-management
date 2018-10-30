@@ -1,0 +1,1 @@
+This folder contains the code for creating Manager's UI. To run it we need Apache and MySQL running in XAMP server

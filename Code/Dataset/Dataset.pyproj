@@ -25,6 +25,7 @@
     <Compile Include="CustomerDensity.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Dataethnic.py" />
     <Compile Include="Dataset.py">
       <SubType>Code</SubType>
     </Compile>

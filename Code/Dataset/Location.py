@@ -9,6 +9,12 @@ import Common
 
 class Location:
     
+    def __init__(self):
+        H = Common.Helper()
+        rows = len(H.GetZoneData())
+        columns = len(H.GetFoodEntry())
+        self.FoodCount = np.zeros((rows,columns))
+
     def CreateLocationDataset(self):
         H = Common.Helper()
         df = pd.read_csv('Statefood.csv')
@@ -59,11 +65,7 @@ class Location:
         for value in range(0,num_rows):
             H.CalPercentage(zone_food[value],total_zone[value])
 
-        #print("Scaled percentage")
-        #print(zone_food)
-
-        num_entries = 500
-
+        num_entries = H.GetNumEntries()
         entries_per_zone = num_entries/num_rows
         for row in range(0,num_rows):
             for column in range(0,num_columns):
@@ -74,11 +76,9 @@ class Location:
             total = sum(zone_food[row,:])
             error = entries_per_zone - total
             while error > 0:
-                zone_food[row][random.randint(0,num_rows-1)] += 1
+                zone_food[row][random.randint(0,num_columns-1)] += 1
                 error -= 1
 
-        #print("Correction") 
-        #print(zone_food)
         count = np.zeros((num_rows,num_columns))
         Foodtype = H.GetFoodType();
         FoodData = H.GetFoodData();
@@ -92,7 +92,7 @@ class Location:
         
         zone_data = H.GetZoneData()
         FoodCategory = np.zeros(max)
-        for entry in range(0,num_entries):    
+        for entry in range(0,num_entries):
             row = random.randint(0,num_rows-1)
             column = random.randint(0, num_columns-1)
             while(count[row][column] >= zone_food[row][column]):
@@ -103,9 +103,11 @@ class Location:
             FoodCategory = Foodtype.get(FoodType)
             FoodEntry = FoodCategory[random.randint(0,len(FoodCategory)-1)]
             TableEntry[entry] = [ZoneValue,FoodEntry]
+            self.FoodCount[row][H.GetFoodEntry().get(FoodEntry)] += 1
             count[row][column] += 1
-
-        print(TableEntry)
+        
+        return self.FoodCount
+        #print(TableEntry)
         #plt.title('PDF')
         #plt.xlabel('Food Type')
         #plt.ylabel('Probability')

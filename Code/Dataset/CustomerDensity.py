@@ -1,9 +1,12 @@
+import mysql.connector
 import numpy as np
 import pandas as pd
 import math
 import statistics
 import random
 import Common
+import Location
+import Dataethnic
 
 class DensityTime:
 
@@ -14,19 +17,19 @@ class DensityTime:
         self.dinner_time = ["18:00", "19:00", "20:00","21:00","22:00","23:00"]
         self.food_type = {"Breakfast":self.breakfast_time,"Lunch":self.lunch_time,"Snacks":self.snacks_time,"Dinner":self.dinner_time}
         self.customer_per_time = {"Breakfast":15, "Lunch":30, "Snacks":5, "Dinner":50}
-        self.num_customers_per_day = 500
-
-    def GetKeyByValue(self,dictOfWords, Value):
-        for (key, value) in dictOfWords.items():
-            if Value in value:
-                break
-        return key
+        self.breakfast_menu = []
+        self.lunch_menu = []
+        self.snacks_menu = []
+        self.dinner_menu = []
+        self.num_customers = 500        
+        self.TableEntry = list()
 
     def GetFoodCategory(self,Time):
-        return self.GetKeyByValue(self.food_type,Time)
+        H = Common.Helper()
+        return H.GetKeyByValue(self.food_type,Time,False)
 
     def RoundingCorrection(self,arr,perc):
-        entries_per_type = math.floor((perc/100)*self.num_customers_per_day)
+        entries_per_type = math.floor((perc/100)*self.num_customers)
         length = len(arr)
         for row in range(0,length):
             total = sum(arr)
@@ -35,26 +38,52 @@ class DensityTime:
                 arr[random.randint(0,length-1)] += 1
                 error -= 1
 
-    def CreateDensityTime(self):
+    def GetRandomizationRange(self,FoodEntry,FoodCount,EthnicCount):
         H = Common.Helper()
+        D = Dataethnic.EthnicState()
 
-        breakfast_menu = []
-        breakfast_menu.append(H.Foodtype.get("Bakeries"))
-        breakfast_menu.append(H.Foodtype.get("Sandwich shop"))
+        zone_key_list = [] * len(H.GetZoneData())
+        ethnic_key_list = [[None for x in range(len(D.GetEthnicData()))] for y in range(len(H.GetZoneData()))] 
+        index = H.GetFoodEntry().get(FoodEntry)
+        for zone in range(0,len(H.GetZoneData())):
+            if FoodCount[zone][index] != 0:
+                zone_key_list.append(zone)
 
-        lunch_menu = []
-        lunch_menu.append(H.Foodtype.get("Pizza"))
-        lunch_menu.append(H.Foodtype.get("Mexican"))
+        column = 0
+        for ethnic in range(0,len(D.GetEthnicData())):
+            for zone in zone_key_list:
+                if EthnicCount[zone][ethnic] != 0:
+                    ethnic_key_list[zone][column] = ethnic
+            column += 1
 
-        snacks_menu = []
-        snacks_menu.append(H.Foodtype.get("Bakeries"))
-        snacks_menu.append(H.Foodtype.get("Sandwich shop"))
-        snacks_menu.append(H.Foodtype.get("Ice cream"))
+        return zone_key_list,ethnic_key_list
 
-        dinner_menu = []
-        dinner_menu.append(H.Foodtype.get("Steak and BBQ"))
-        dinner_menu.append(H.Foodtype.get("Chinese"))
+    def CreateDensityTime(self,FoodCount,EthnicCount):
+        H = Common.Helper()
+        D = Dataethnic.EthnicState()
 
+        mydb = mysql.connector.connect(
+          host="localhost",
+          user="root",
+          passwd="",
+          database="restaurant"
+        )
+        mycursor = mydb.cursor()
+
+        self.breakfast_menu += H.Foodtype.get("Bakeries")
+        self.breakfast_menu += H.Foodtype.get("Sandwich shop")
+
+        self.lunch_menu += H.Foodtype.get("Pizza")
+        self.lunch_menu += H.Foodtype.get("Mexican")
+
+        self.snacks_menu += H.Foodtype.get("Bakeries")
+        self.snacks_menu += H.Foodtype.get("Sandwich shop")
+        self.snacks_menu += H.Foodtype.get("Ice cream")
+
+        self.dinner_menu += H.Foodtype.get("Steak and BBQ")
+        self.dinner_menu += H.Foodtype.get("Chinese")
+
+        self.num_customers = H.GetNumEntries()
         df = pd.read_csv('TimeVsCustomer.csv')
         num_rows = df.shape[0] - 1
         num_columns = df.shape[1]
@@ -72,7 +101,7 @@ class DensityTime:
                 base = self.customer_per_time.get("Snacks")
             else:
                 base = self.customer_per_time.get("Dinner")
-            base = (base/100)*self.num_customers_per_day
+            base = (base/100)*self.num_customers
             Time_list[row][1] = math.floor((Time_list[row][1]/100)*base)
 
         #print(Time_list)
@@ -108,32 +137,78 @@ class DensityTime:
         
         # Rounding correction
         length1 = len(self.breakfast_time)
-        length2 = length1+len(self.lunch_time)
-        length3 = length2+len(self.snacks_time)
+        length2 = length1 + len(self.lunch_time)
+        length3 = length2 + len(self.snacks_time)
         Time_list[random.randint(0,length1-1)][1] += (sum(Breakfast_density) - total_timezone[0])
         Time_list[random.randint(length1,length2-1)][1] += (sum(Lunch_density) - total_timezone[1])
         Time_list[random.randint(length2,length3-1)][1] += (sum(Snacks_density) - total_timezone[2])
         Time_list[random.randint(length3,len(Time_list)-1)][1] += (sum(Dinner_density) - total_timezone[3])
-        #print(Time_list)
-        TableEntry = list()
-        TableEntry = [[]]*self.num_customers_per_day
+
+        self.TableEntry = [[]]*self.num_customers
         count = np.zeros(num_rows)
-        for entry in range(0,self.num_customers_per_day):
-            row = random.randint(0,num_rows-1)
-            while(count[row] >= Time_list[row][1]):
+        for entry in range(0,self.num_customers):
+            EntryAdded = False
+            while EntryAdded == False:
                 row = random.randint(0,num_rows-1)
-            FoodCategory = self.GetFoodCategory(Time_list[row][0])
-            if FoodCategory == "Breakfast":
-                FoodEntry = breakfast_menu[random.randint(0,len(breakfast_menu)-1)]
-            elif FoodCategory == "Lunch":
-                FoodEntry = lunch_menu[random.randint(0,len(lunch_menu)-1)]
-            elif FoodCategory == "Snacks":
-                FoodEntry = snacks_menu[random.randint(0,len(snacks_menu)-1)]
-            else:
-                FoodEntry = dinner_menu[random.randint(0,len(dinner_menu)-1)]
-            Entry_Value = FoodEntry[random.randint(0,len(FoodEntry)-1)]
-            TableEntry[entry] = [Time_list[row][0],Time_list[row][1],Entry_Value]
-            count[row] += 1
-        
+                #if count[row] >= Time_list[row][1]:
+                #    continue
+                FoodCategory = self.GetFoodCategory(Time_list[row][0])
+                if FoodCategory == "Breakfast":
+                    Entry_Value = self.breakfast_menu[random.randint(0,len(self.breakfast_menu)-1)]
+                elif FoodCategory == "Lunch":
+                    Entry_Value = self.lunch_menu[random.randint(0,len(self.lunch_menu)-1)]
+                elif FoodCategory == "Snacks":
+                    Entry_Value = self.snacks_menu[random.randint(0,len(self.snacks_menu)-1)]
+                else:
+                    Entry_Value = self.dinner_menu[random.randint(0,len(self.dinner_menu)-1)]
+
+                Type_of_Food = H.GetFoodCategory(Entry_Value)
+                zone_key_list, ethnic_key_list = self.GetRandomizationRange(Entry_Value,FoodCount,EthnicCount)
+
+                if not zone_key_list:
+                    continue
+
+                retry_count = 10
+                Zone_Key = zone_key_list[random.randint(0,len(zone_key_list)-1)]
+                Zone = H.GetZoneData().get(Zone_Key)
+                if FoodCount[Zone_Key][H.GetFoodEntry().get(Entry_Value)] == 0:
+                    while (FoodCount[Zone_Key][H.GetFoodEntry().get(Entry_Value)] == 0) and (retry_count > 0):
+                        Zone_Key = random.randint(0,len(H.GetZoneData())-1)
+                        Zone = H.GetZoneData().get(Zone_Key)
+                        retry_count -= 1
+                    if retry_count == 0:
+                        continue
+
+                if not ethnic_key_list[Zone_Key]:
+                    continue
+
+                ethnic_list_mod = []
+                for x in range(0,len(ethnic_key_list[Zone_Key])):
+                    if ethnic_key_list[Zone_Key][x] is not None:
+                        ethnic_list_mod.append(ethnic_key_list[Zone_Key][x])
+
+                retry_count = 20
+                Ethnic_Key = ethnic_list_mod[random.randint(0,len(ethnic_list_mod)-1)]
+                Ethnicity = D.GetEthnicData().get(Ethnic_Key)
+                if EthnicCount[Zone_Key][Ethnic_Key] == 0:
+                    while (EthnicCount[Zone_Key][Ethnic_Key] == 0) and (retry_count > 0):
+                        Ethnic_Key = random.randint(0,len(D.GetEthnicData())-1)
+                        Ethnicity = D.GetEthnicData().get(Ethnic_Key)
+                        retry_count -= 1
+                    if retry_count == 0:
+                        continue
+
+                Price = H.GetPriceItem().get(Entry_Value)
+                FoodCount[Zone_Key][H.GetFoodEntry().get(Entry_Value)] -= 1
+                EthnicCount[Zone_Key][Ethnic_Key] -= 1
+
+                self.TableEntry[entry] = [Time_list[row][0],Zone,Type_of_Food,Entry_Value,Price,Time_list[row][1],Ethnicity]
+
+                #sql = "INSERT INTO users (Time,Zone,Type_of_Food,Food,Price,Density,Ethnicity) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+                #val = (Time_list[row][0],Zone,Type_of_Food,Entry_Value,Price,Time_list[row][1],Ethnicity)
+                #mycursor.execute(sql, val)
+                #mydb.commit()
+                count[row] += 1
+                EntryAdded = True
         # Final entry values
-        print(TableEntry)
+        print(self.TableEntry)
