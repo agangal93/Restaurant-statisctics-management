@@ -1,1 +1,3 @@
-Add list of tests here
+Module tests - 
+
+1) Location vs Zone value count verification
