@@ -1,1 +1,0 @@
-This folder contains the code for data clusering using the artificially generated dataset.

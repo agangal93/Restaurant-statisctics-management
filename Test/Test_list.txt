@@ -1,3 +1,0 @@
-Module tests - 
-
-1) Location vs Zone value count verification

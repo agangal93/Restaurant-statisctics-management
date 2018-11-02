@@ -1,1 +1,0 @@
-This folder contains the code to generate the artificial dataset. Open Dataset.sln Visual studio file and run the python code to generate the dataset.
