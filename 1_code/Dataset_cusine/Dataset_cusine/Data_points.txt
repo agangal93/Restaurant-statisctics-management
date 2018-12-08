@@ -1,0 +1,32 @@
+Cusines varation
+
+Italian - 87
+Mexican - 81
+Chinese- 76
+American- 58
+Mediterranean - 42
+Japenese - 37
+Thai - 25
+Indian - 18
+
+Mexican - South and West Zone
+Italian - East, North
+American - East, North
+Indian - West, East
+Japanese - South, West
+Chinese - North, East
+Mediterranean - West, South
+Thai - Central, West
+
+Percentage divisions - 
+	  E, W, N, S, C		Ethincity
+Mexican - 15,35,5,35,10 	H 60, W 20, B 10, A 10
+Italian - 50,15,20,7,8		H 15, W 60, B 10, A 15
+American- 20,15,35,10,20	H 10, W 35, B 50, A 5
+Chinese - 30,15,35,10,10	H 10, W 30, B 10, A 50
+Mediteranean - 10,40,10,30,10	H 40, W 30, B 10, A 20
+Japenese- 15,30,15,30,10	H 5, W 40, B 15, A 40
+Thai -    10,15,30,5,40		H 10, W 25, B 15, A 50
+Indian -  35,35,10,15,5		H 20, W 10, B 10, A 60
+
+

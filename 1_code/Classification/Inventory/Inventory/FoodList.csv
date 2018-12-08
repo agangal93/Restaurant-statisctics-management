@@ -1,0 +1,203 @@
+Food,Quantity,Ingredients
+Chilaquiles,2,Oil
+Chilaquiles,0.25,Onion
+Chilaquiles,30,Corn Tortillas
+Chilaquiles,6,Eggs
+Chilaquiles,1,Salt
+Chilaquiles,1,Tomato Sauce
+Chilaquiles,0.5,Montery Jack Cheese
+Tacos,1,Olive Oil
+Tacos,0.5,Onion
+Tacos,2,Ground Beef
+Tacos,0.5,Salt
+Tacos,2,Flour Tortillas
+Tacos,2,Taco Shells
+Tacos,2,Cheese
+Enchiladas,4,Boneless Chicken Breast
+Enchiladas,1,Onion
+Enchiladas,1,Cheddar Cheese
+Enchiladas,0.5,Oregano
+Enchiladas,0.5,Pepper
+Enchiladas,1,Tomato Sauce
+Enchiladas,1,Garlic
+Enchiladas,8,Flour Tortillas
+Quesadillas,1,Boneless Chicken Breast
+Quesadillas,3,Fajita Seasoning
+Quesadillas,1,Oil
+Quesadillas,2,Bell Peppers
+Quesadillas,10,Flour Tortillas
+Quesadillas,10,Bacon 
+Quesadillas,1,Montery Jack Cheese
+Pepperoni Pizza,0.5,Tomato Sauce
+Pepperoni Pizza,1,Red Pepper Flakes
+Pepperoni Pizza,2,Olive Oil
+Pepperoni Pizza,6,Bacon
+Pepperoni Pizza,0.25,Dry Yeast
+Pepperoni Pizza,3,Bread Flour
+Pepperoni Pizza,0.5,Red Onion
+Pepperoni Pizza,0.5,Fresh Mozzarella Cheese
+Spaghetti and meatballs,1,Ground Beef
+Spaghetti and meatballs,1,Spaghetti
+Spaghetti and meatballs,0.3,Breadcrumbs
+Spaghetti and meatballs,1,Egg
+Spaghetti and meatballs,2,Garlic
+Spaghetti and meatballs,1,Salt
+Spaghetti and meatballs,0.5,Red Pepper Flakes
+Spaghetti and meatballs,2,Oil
+Spaghetti and meatballs,0.5,Onion
+Spaghetti and meatballs,1,Pepper
+Fettuccine Alfredo,24,Fettuccini
+Fettuccine Alfredo,1,Butter
+Fettuccine Alfredo,1,Cream
+Fettuccine Alfredo,1,Salt
+Fettuccine Alfredo,0.75,Romano Cheese
+Fettuccine Alfredo,0.5,Parmesan Cheese
+Chicken Parmesan,1,Boneless Chicken Breast
+Chicken Parmesan,1,Salt
+Chicken Parmesan,2,Eggs
+Chicken Parmesan,1,Breadcrumbs
+Chicken Parmesan,0.5,Parmesan Cheese
+Chicken Parmesan,2,All Purpose Flour
+Chicken Parmesan,1,Oil
+Chicken Parmesan,0.5,Tomato Sauce
+Turkey and cheese sandwich,2,Bread
+Turkey and cheese sandwich,20,Turkey Breast Roast
+Turkey and cheese sandwich,2,Cheese
+Turkey and cheese sandwich,2,Baby Spinach
+BBQ Bacon Cheeseburger,0.25,Mayonnaise
+BBQ Bacon Cheeseburger,0.25,Barbecue Sauce
+BBQ Bacon Cheeseburger,4,Bacon Strips
+BBQ Bacon Cheeseburger,1,Steak Seasoning
+BBQ Bacon Cheeseburger,1,Ground Beef
+BBQ Bacon Cheeseburger,4,Cheese
+BBQ Bacon Cheeseburger,2,Hamburger Buns
+BBQ Bacon Cheeseburger,2,Lettuce Leaves
+Chicken Fried Steak,0.5,Beef Cube Steaks
+Chicken Fried Steak,2,All Purpose Flour
+Chicken Fried Steak,2,Baking Powder
+Chicken Fried Steak,1,Baking Soda
+Chicken Fried Steak,1,Pepper
+Chicken Fried Steak,0.75,Salt
+Chicken Chow Mein,2,Soy Sauce
+Chicken Chow Mein,0.25,Sesame Oil
+Chicken Chow Mein,0.5,Boneless Chicken Breast
+Chicken Chow Mein,0.75,Chicken Broth
+Chicken Chow Mein,1,Sugar
+Chicken Chow Mein,0.5,Noodles
+Chicken Chow Mein,1,Vegetable Oil
+Chicken Chow Mein,2,Onion
+Beef Lo Mein,8,Spaghetti
+Beef Lo Mein,1,Sesame Oil
+Beef Lo Mein,2,Garlic
+Beef Lo Mein,1,Mixed Veggies
+Beef Lo Mein,2,Soy Sauce
+Beef Lo Mein,2,Sugar
+Beef Lo Mein,1,Asian Chile Paste
+Fried Dumpling,2,All Purpose Flour
+Fried Dumpling,1,Baking Powder
+Fried Dumpling,1,Salt
+Fried Dumpling,0.5,Butter
+Fried Dumpling,3,Vegetable Oil
+Falafel,1,Chickpeas
+Falafel,1,Onion
+Falafel,2,Flour
+Falafel,1,Salt
+Falafel,1,Cumin
+Falafel,1,Caradamom
+Falafel,1,Pepper
+Falafel,2,Vegetable Oil
+Fattet Hummus,0.75,Chickpeas
+Fattet Hummus,1,Yogurt
+Fattet Hummus,2,Tahini
+Fattet Hummus,1,Cumin
+Fattet Hummus,1,Salt
+Fattet Hummus,3,Oil
+Fattet Hummus,2,Pine Nuts
+Spanakopita,3,Spinach
+Spanakopita,2,Onion
+Spanakopita,2,Garlic
+Spanakopita,1,Oil
+Spanakopita,3,Eggs
+Spanakopita,1,Pepper
+Sushi,1,Sushi Rice
+Sushi,1,Rice Vinegar
+Sushi,1,Sugar
+Sushi,1,Salt
+Sushi,2,Sesame Seeds
+Sushi,4,Bamboo Sushi Mat
+Sushi,0.5,Crabmeat
+Sashimi,1,Tuna
+Sashimi,2,Olive Oil
+Sashimi,1,Soy Sauce
+Sashimi,2,Sesame Seeds
+Sashimi,0.5,Chives
+Tempura,1,All Purpose Flour
+Tempura,1,Eggs
+Tempura,1,Sweet Potato
+Tempura,2,Mushroom
+Tempura,3,Soy Sauce
+Tempura,2,Mirin
+Tempura,2,Sugar
+Tonkatsu,0.5,Cabbage
+Tonkatsu,1,Salt
+Tonkatsu,1,Pepper
+Tonkatsu,3,Pork Chops
+Tonkatsu,2,All Purpose Flour
+Tonkatsu,1,Eggs
+Tonkatsu,1,Vegetable Oil
+Tom Yum Goong,1,Shrimp
+Tom Yum Goong,2,Lemongrass
+Tom Yum Goong,0.5,Mushroom
+Tom Yum Goong,2,Red Chilli Paste
+Tom Yum Goong,1,Fish Sauce
+Tom Yum Goong,0.5,Onion
+Tom Yum Goong,1,Lime Juice
+Tom Yum Goong,4,Lime Juice
+Khao Soi,2,Oil
+Khao Soi,3,Garlic
+Khao Soi,1,Curry Powder
+Khao Soi,4,Coconut Milk
+Khao Soi,1,Salt
+Khao Soi,2,Chicken
+Khao Soi,2,Fish Sauce
+Khao Soi,1,Lime Juice
+Khao Soi,8,Noodles
+Khao Soi,1,Cabbage
+Pad See ew,8,Noodles
+Pad See ew,2,Boneless Chicken Breast
+Pad See ew,3,Soy Sauce
+Pad See ew,2,Fish Sauce
+Pad See ew,2,Oyster Sauce
+Pad See ew,1,Sugar
+Pad See ew,1,Egg
+Pad See ew,3,Garlic
+Butter Chicken,1,Oil
+Butter Chicken,0.25,Onion
+Butter Chicken,2,Butter
+Butter Chicken,2,Lime Juice
+Butter Chicken,1,Ginger Garlic Paste
+Butter Chicken,1,Chili Powder
+Butter Chicken,1,Tomato Sauce
+Butter Chicken,1,Salt
+Butter Chicken,1,Pepper
+Butter Chicken,1,Boneless Chicken Breast
+Butter Chicken,1,Garam Masala
+Tandoori Chicken,2,Chicken
+Tandoori Chicken,1,Salt
+Tandoori Chicken,1,Lemon
+Tandoori Chicken,0.5,Onion
+Tandoori Chicken,1,Garlic
+Tandoori Chicken,2,Garam Masala
+Tandoori Chicken,1,Chili Powder
+Tandoori Chicken,2,Cilantro
+Tandoori Chicken,1,Lime Juice
+Alu Gobi,3,Vegetable Oil
+Alu Gobi,1,Onion
+Alu Gobi,1,Ginger Garlic Paste
+Alu Gobi,2,Cilantro
+Alu Gobi,0.25,Tumeric Powder
+Alu Gobi,0.5,Garam Masala
+Alu Gobi,2,Potato
+Alu Gobi,1,Salt
+Alu Gobi,0.5,Cauliflower
+Alu Gobi,2,Lime Juice
