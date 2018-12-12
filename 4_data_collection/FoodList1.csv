@@ -1,0 +1,204 @@
+Food,Quantity,Unit,Ingredients
+,,,
+Chilaquiles,2,Cups,Oil
+Chilaquiles,0.25,Cups,Onion
+Chilaquiles,30,Piece,Corn Tortillas
+Chilaquiles,6,Piece,Eggs
+Chilaquiles,1,Tablespoon,Salt
+Chilaquiles,1,Ounce,Tomato Sauce
+Chilaquiles,0.5,Cups,Montery Jack Cheese
+Tacos,1,Tablespoon,Olive Oil
+Tacos,0.5,Piece,Onion
+Tacos,2,Pound,Ground Beef
+Tacos,0.5,Tablespoon,Salt
+Tacos,2,Piece,Flour Tortillas
+Tacos,2,Piece,Taco Shells
+Tacos,2,Slice,Cheese
+Enchiladas,4,Piece,Boneless Chicken Breast
+Enchiladas,1,Piece,Onion
+Enchiladas,1,Cups,Cheddar Cheese
+Enchiladas,0.5,Tablespoon,Oregano
+Enchiladas,0.5,Tablespoon,Pepper
+Enchiladas,1,Ounce,Tomato Sauce
+Enchiladas,1,Clove,Garlic
+Enchiladas,8,Piece,Flour Tortillas
+Quesadillas,1,Pound,Boneless Chicken Breast
+Quesadillas,3,Tablespoon,Fajita Seasoning
+Quesadillas,1,Tablespoon,Oil
+Quesadillas,2,Piece,Bell Peppers
+Quesadillas,10,Piece,Flour Tortillas
+Quesadillas,10,Slice,Bacon 
+Quesadillas,1,Cups,Montery Jack Cheese
+Pepperoni Pizza,0.5,Cups,Tomato Sauce
+Pepperoni Pizza,1,Tablespoon,Red Pepper Flakes
+Pepperoni Pizza,2,Tablespoon,Olive Oil
+Pepperoni Pizza,6,Slice,Bacon
+Pepperoni Pizza,0.25,Ounce,Dry Yeast
+Pepperoni Pizza,3,Cups,Bread Flour
+Pepperoni Pizza,0.5,Piece,Red Onion
+Pepperoni Pizza,0.5,Pound,Fresh Mozzarella Cheese
+Spaghetti and meatballs,1,Pound,Ground Beef
+Spaghetti and meatballs,1,Pound,Spaghetti
+Spaghetti and meatballs,0.3,Cups,Breadcrumbs
+Spaghetti and meatballs,1,Piece,Egg
+Spaghetti and meatballs,2,Clove,Garlic
+Spaghetti and meatballs,1,Tablespoon,Salt
+Spaghetti and meatballs,0.5,Tablespoon,Red Pepper Flakes
+Spaghetti and meatballs,2,Tablespoon,Oil
+Spaghetti and meatballs,0.5,Cups,Onion
+Spaghetti and meatballs,1,Tablespoon,Pepper
+Fettuccine Alfredo,24,Ounce,Fettuccini
+Fettuccine Alfredo,1,Cups,Butter
+Fettuccine Alfredo,1,Pint,Cream
+Fettuccine Alfredo,1,Tablespoon,Salt
+Fettuccine Alfredo,0.75,Cups,Romano Cheese
+Fettuccine Alfredo,0.5,Cups,Parmesan Cheese
+Chicken Parmesan,1,Pound,Boneless Chicken Breast
+Chicken Parmesan,1,Tablespoon,Salt
+Chicken Parmesan,2,Piece,Eggs
+Chicken Parmesan,1,Cups,Breadcrumbs
+Chicken Parmesan,0.5,Cups,Parmesan Cheese
+Chicken Parmesan,2,Tablespoon,All Purpose Flour
+Chicken Parmesan,1,Cups,Oil
+Chicken Parmesan,0.5,Cups,Tomato Sauce
+Turkey and cheese sandwich,2,Slice,Bread
+Turkey and cheese sandwich,20,Gram,Turkey Breast Roast
+Turkey and cheese sandwich,2,Slice,Cheese
+Turkey and cheese sandwich,2,Piece,Baby Spinach
+BBQ Bacon Cheeseburger,0.25,Cups,Mayonnaise
+BBQ Bacon Cheeseburger,0.25,Cups,Barbecue Sauce
+BBQ Bacon Cheeseburger,4,Slice,Bacon Strips
+BBQ Bacon Cheeseburger,1,Tablespoon,Steak Seasoning
+BBQ Bacon Cheeseburger,1,Pound,Ground Beef
+BBQ Bacon Cheeseburger,4,Slice,Cheese
+BBQ Bacon Cheeseburger,2,Piece,Hamburger Buns
+BBQ Bacon Cheeseburger,2,Piece,Lettuce Leaves
+Chicken Fried Steak,0.5,Pound,Beef Cube Steaks
+Chicken Fried Steak,2,Cups,All Purpose Flour
+Chicken Fried Steak,2,Tablespoon,Baking Powder
+Chicken Fried Steak,1,Tablespoon,Baking Soda
+Chicken Fried Steak,1,Tablespoon,Pepper
+Chicken Fried Steak,0.75,Tablespoon,Salt
+Chicken Chow Mein,2,Tablespoon,Soy Sauce
+Chicken Chow Mein,0.25,Tablespoon,Sesame Oil
+Chicken Chow Mein,0.5,Pound,Boneless Chicken Breast
+Chicken Chow Mein,0.75,Cups,Chicken Broth
+Chicken Chow Mein,1,Tablespoon,Sugar
+Chicken Chow Mein,0.5,Pound,Noodles
+Chicken Chow Mein,1,Tablespoon,Vegetable Oil
+Chicken Chow Mein,2,Tablespoon,Onion
+Beef Lo Mein,8,Ounce,Spaghetti
+Beef Lo Mein,1,Tablespoon,Sesame Oil
+Beef Lo Mein,2,Clove,Garlic
+Beef Lo Mein,1,Cups,Mixed Veggies
+Beef Lo Mein,2,Tablespoon,Soy Sauce
+Beef Lo Mein,2,Tablespoon,Sugar
+Beef Lo Mein,1,Tablespoon,Asian Chile Paste
+Fried Dumpling,2,Cups,All Purpose Flour
+Fried Dumpling,1,Tablespoon,Baking Powder
+Fried Dumpling,1,Tablespoon,Salt
+Fried Dumpling,0.5,Cups,Butter
+Fried Dumpling,3,Tablespoon,Vegetable Oil
+Falafel,1,Ounce,Chickpeas
+Falafel,1,Piece,Onion
+Falafel,2,Cups,Flour
+Falafel,1,Tablespoon,Salt
+Falafel,1,Tablespoon,Cumin
+Falafel,1,Tablespoon,Caradamom
+Falafel,1,Tablespoon,Pepper
+Falafel,2,Tablespoon,Vegetable Oil
+Fattet Hummus,0.75,Cups,Chickpeas
+Fattet Hummus,1,Cups,Yogurt
+Fattet Hummus,2,Tablespoon,Tahini
+Fattet Hummus,1,Tablespoon,Cumin
+Fattet Hummus,1,Tablespoon,Salt
+Fattet Hummus,3,Cups,Oil
+Fattet Hummus,2,Cups,Pine Nuts
+Spanakopita,3,Piece,Spinach
+Spanakopita,2,Piece,Onion
+Spanakopita,2,Clove,Garlic
+Spanakopita,1,Cups,Oil
+Spanakopita,3,Piece,Eggs
+Spanakopita,1,Tablespoon,Pepper
+Sushi,1,Cups,Sushi Rice
+Sushi,1,Tablespoon,Rice Vinegar
+Sushi,1,Tablespoon,Sugar
+Sushi,1,Tablespoon,Salt
+Sushi,2,Cups,Sesame Seeds
+Sushi,4,Piece,Bamboo Sushi Mat
+Sushi,0.5,Ounce,Crabmeat
+Sashimi,1,Pound,Tuna
+Sashimi,2,Tablespoon,Olive Oil
+Sashimi,1,Tablespoon,Soy Sauce
+Sashimi,2,Tablespoon,Sesame Seeds
+Sashimi,0.5,Tablespoon,Chives
+Tempura,1,Cups,All Purpose Flour
+Tempura,1,Piece,Eggs
+Tempura,1,Piece,Sweet Potato
+Tempura,2,Piece,Mushroom
+Tempura,3,Tablespoon,Soy Sauce
+Tempura,2,Tablespoon,Mirin
+Tempura,2,Tablespoon,Sugar
+Tonkatsu,0.5,Piece,Cabbage
+Tonkatsu,1,Tablespoon,Salt
+Tonkatsu,1,Tablespoon,Pepper
+Tonkatsu,3,Piece,Pork Chops
+Tonkatsu,2,Cups,All Purpose Flour
+Tonkatsu,1,Piece,Eggs
+Tonkatsu,1,Tablespoon,Vegetable Oil
+Tom Yum Goong,1,Pound,Shrimp
+Tom Yum Goong,2,Cups,Lemongrass
+Tom Yum Goong,0.5,Cups,Mushroom
+Tom Yum Goong,2,Tablespoon,Red Chilli Paste
+Tom Yum Goong,1,Tablespoon,Fish Sauce
+Tom Yum Goong,0.5,Cups,Onion
+Tom Yum Goong,1,Tablespoon,Lime Juice
+Tom Yum Goong,4,Slice,Lime Juice
+Khao Soi,2,Tablespoon,Oil
+Khao Soi,3,Clove,Garlic
+Khao Soi,1,Tablespoon,Curry Powder
+Khao Soi,4,Cups,Coconut Milk
+Khao Soi,1,Tablespoon,Salt
+Khao Soi,2,Cups,Chicken
+Khao Soi,2,Tablespoon,Fish Sauce
+Khao Soi,1,Tablespoon,Lime Juice
+Khao Soi,8,Ounce,Noodles
+Khao Soi,1,Cups,Cabbage
+Pad See ew,8,Ounce,Noodles
+Pad See ew,2,Piece,Boneless Chicken Breast
+Pad See ew,3,Tablespoon,Soy Sauce
+Pad See ew,2,Tablespoon,Fish Sauce
+Pad See ew,2,Tablespoon,Oyster Sauce
+Pad See ew,1,Tablespoon,Sugar
+Pad See ew,1,Piece,Egg
+Pad See ew,3,Clove,Garlic
+Butter Chicken,1,Tablespoon,Oil
+Butter Chicken,0.25,Piece,Onion
+Butter Chicken,2,Tablespoon,Butter
+Butter Chicken,2,Tablespoon,Lime Juice
+Butter Chicken,1,Tablespoon,Ginger Garlic Paste
+Butter Chicken,1,Tablespoon,Chili Powder
+Butter Chicken,1,Cups,Tomato Sauce
+Butter Chicken,1,Tablespoon,Salt
+Butter Chicken,1,Tablespoon,Pepper
+Butter Chicken,1,Pound,Boneless Chicken Breast
+Butter Chicken,1,Tablespoon,Garam Masala
+Tandoori Chicken,2,Pound,Chicken
+Tandoori Chicken,1,Tablespoon,Salt
+Tandoori Chicken,1,Piece,Lemon
+Tandoori Chicken,0.5,Piece,Onion
+Tandoori Chicken,1,Clove,Garlic
+Tandoori Chicken,2,Tablespoon,Garam Masala
+Tandoori Chicken,1,Tablespoon,Chili Powder
+Tandoori Chicken,2,Tablespoon,Cilantro
+Tandoori Chicken,1,Slice,Lime Juice
+Alu Gobi,3,Tablespoon,Vegetable Oil
+Alu Gobi,1,Piece,Onion
+Alu Gobi,1,Tablespoon,Ginger Garlic Paste
+Alu Gobi,2,Tablespoon,Cilantro
+Alu Gobi,0.25,Tablespoon,Tumeric Powder
+Alu Gobi,0.5,Tablespoon,Garam Masala
+Alu Gobi,2,Piece,Potato
+Alu Gobi,1,Tablespoon,Salt
+Alu Gobi,0.5,Piece,Cauliflower
+Alu Gobi,2,Tablespoon,Lime Juice
