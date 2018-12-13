@@ -1,3 +1,6 @@
+# Written by: Yashasvi Khatavakar
+# Tested by: Yashasvi Khatavakar
+
 import mysql.connector
 import numpy as np
 import random

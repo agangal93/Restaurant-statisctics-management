@@ -1,3 +1,6 @@
+# Written by: Akshay Gangal
+# Tested by: Akshay Gangal
+
 import numpy as np
 import pandas as pd
 import math
@@ -5,6 +8,8 @@ import random
 import Common
 from scipy.stats import truncnorm
 
+## EntrySet - Class for combining entries from multiple datasets and minimzing errors added during generation 
+#
 class EntrySet:
     ## The constructor.
     # @param self The object pointer
@@ -129,41 +134,6 @@ class EntrySet:
             elif entryset != 2:
                 assert(0),"Invalid entry set"
 
-        #if Type == "Gaussian":
-        #    for row in range(0,len(ZoneEntry)):
-        #        if entryset == 0 or entryset == 4:
-        #            ZoneEntry[row][column_key] = round(min(self.NormDistribution[row]),2)
-        #        elif entryset == 1 or entryset == 3:
-        #            ZoneEntry[row][column_key] = round(sorted(self.NormDistribution[row])[1],2)
-        #        elif entryset != 2:
-        #            assert(0),"Invalid entry set"
-        #elif Type == "Increase":
-        #    row = H.GetKeyByValue(H.GetCusineMap(),Cusine,True)
-        #    if entryset == 0:
-        #        ZoneEntry[row][column_key] = round(min(self.NormDistribution[row]),2)
-        #    elif entryset == 1:
-        #        ZoneEntry[row][column_key] = round(sorted(self.NormDistribution[row])[1],2)
-        #    elif entryset == 3:
-        #        ZoneEntry[row][column_key] = round(sorted(set(self.NormDistribution[row]))[-2],2)
-        #    elif entryset == 4:
-        #        ZoneEntry[row][column_key] = round(max(self.NormDistribution[row]),2)
-        #    elif entryset != 2:
-        #        assert(0),"Invalid entry set"
-        #elif Type == "Decrease":
-        #    row = H.GetKeyByValue(H.GetCusineMap(),Cusine,True)
-        #    if entryset == 0:
-        #        ZoneEntry[row][column_key] = round(max(self.NormDistribution[row]),2)
-        #    elif entryset == 1:
-        #        ZoneEntry[row][column_key] = round(sorted(set(self.NormDistribution[row]))[-2],2)
-        #    elif entryset == 3:
-        #        ZoneEntry[row][column_key] = round(sorted(self.NormDistribution[row])[1],2)
-        #    elif entryset == 4:
-        #        ZoneEntry[row][column_key] = round(min(self.NormDistribution[row]),2)
-        #    elif entryset != 2:
-        #        assert(0),"Invalid entry set"
-        #else:
-        #    assert(0),"Invalid Distribution Type"
-
         ## Adjust the remaining entries
         sum_val = 0
         for row in range(0,len(ZoneEntry)):
@@ -193,12 +163,13 @@ class EntrySet:
 
             assert (sum(ZoneEntry[row]) == 100), "Incorrect adjustment for remaining entries"
 
-
+        # Add rounding correction
         for row in range(0,len(ZoneEntry)):
             for column in range(0,len(ZoneEntry[0])):
                 ZoneEntry[row][column] = math.floor((ZoneEntry[row][column] * self.Cusine_val[row])/100)
             H.RoundingCorrection(ZoneEntry[row],self.Cusine_val[row],len(ZoneEntry[row]))
 
+        # Validate rounding correction
         self.ValidateCorrection(ZoneEntry,self.Cusine_val)
 
         max_length = 0;
@@ -206,6 +177,7 @@ class EntrySet:
             if len(val) > max_length:
                 max_length = len(val)
 
+        # Add rounding correction
         Cusine_Entry = np.zeros((len(H.GetCusineMap()),len(H.GetZoneMap()),max_length))
         for row in range(0,len(ZoneEntry)):            
             Cusine_len = len(H.GetCusineType().get((H.GetCusineMap().get(row))))
@@ -213,6 +185,7 @@ class EntrySet:
                 for val in range(0,Cusine_len):
                     Cusine_Entry[row][column][val] = math.floor(ZoneEntry[row][column]/Cusine_len)
                 H.RoundingCorrection(Cusine_Entry[row][column],ZoneEntry[row][column],Cusine_len)
+            # Validate rounding correction
             self.ValidateCorrection(Cusine_Entry[row],ZoneEntry[row])
         #print("\nError corrected Zone distribution\n")
         #print(ZoneEntry)

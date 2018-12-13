@@ -1,8 +1,13 @@
+# Written by: Akshay Gangal
+# Tested by: Akshay Gangal
+
 import numpy as np
 import pandas as pd
 import math
 import Common
 
+## EntrySet - Class for combining entries from multiple datasets and minimzing errors added during generation 
+#
 class EntrySet:
     ## The constructor.
     # @param self The object pointer
@@ -54,17 +59,10 @@ class EntrySet:
 
         num_entries = H.GetTotalNumEntries()
 
-        #Cusine_div_map = H.GetCusineDivision()
-        #Total = 0
-        #for val in range(0, len(H.GetCusineDivision())):
-        #    Total += Cusine_div_map[H.GetCusineMap().get(val)]
-
         # Calculate normalized weights for each cusine category
         # and get the scaled number of entries of each type
         Cusine_val = [0] * len(H.GetCusineMap())
         for val in range(0, len(H.GetCusineMap())):
-            #Cusine_val[val] = float(Cusine_div_map[H.GetCusineMap().get(val)])/Total
-            #Cusine_val[val] = math.floor(Cusine_val[val] * num_entries)
             Cusine_val[val] = math.floor(float(num_entries)/len(H.GetCusineMap()))
 
         # Correct the error generated due to rounding

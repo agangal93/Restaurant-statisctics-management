@@ -1,3 +1,6 @@
+# Written by: Akshay Gangal
+# Tested by: Akshay Gangal
+
 import mysql.connector
 import numpy as np
 import Common
@@ -207,6 +210,8 @@ class ClusterData:
         Min_Dish_index = np.argmax(Dish_count_1)
         Min_ethnicity.append(H.GetKeyByValue(H.GetCusine(),(Min_Dish_index + start_index),True))
 
+        ## Insert the most popular and least popular items for each zone in the database along with ethnicity
+        #
         print(Min_ethnicity)
         print("\n")
         sql_1 = "INSERT INTO cluster (Zone,Cusine_type,Cusine,Ethnicity) VALUES (%s,%s,%s,%s)"

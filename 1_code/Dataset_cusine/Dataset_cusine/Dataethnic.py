@@ -1,3 +1,6 @@
+# Written by: Akshay Gangal
+# Tested by: Akshay Gangal
+
 import numpy as np
 #import matplotlib.pyplot as plt
 import pandas as pd
@@ -7,9 +10,9 @@ import random
 #from scipy.stats import norm
 import Common
 
-## LocationCusine - Class for generation of Location Vs Food category matrix
+## EthnicCusine - Class for generation of Location Vs Food category matrix
 #
-# Computes location vs Food category matrix using input CSV file
+# Computes Ethnicity vs Food category matrix using input CSV file
 #
 class EthnicCusine:
     ## The constructor. Includes Helper object, Food Entry and FoodCount

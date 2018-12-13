@@ -1,3 +1,6 @@
+# Written by: Akshay Gangal
+# Tested by: Akshay Gangal
+
 import mysql.connector
 import pandas as pd
 import numpy as np
@@ -7,6 +10,13 @@ from collections import defaultdict
 from heapq import nlargest,nsmallest
 import Common
 
+## @Package. docstring
+#    Inventory management module.
+
+#    This module updates the inventory based on the artificial dataset.
+#    It maintains statistics of the most consumed and least consumed ingredients
+#    and updates the database with the alerts for out of stock ingredients 
+#
 H = Common.Helper()
 
 mydb = mysql.connector.connect(
@@ -23,14 +33,20 @@ CusineList = [[]] * num_items
 num_subsets = H.GetNumSubsets()
 num_entries = H.GetNumSubsetEntries()
 
+## Read the Food item vs Ingredient list
+#
 df = pd.read_csv("FoodList1.csv")
 
+## Group food ingredients be name
+#
 foodToIngredient = defaultdict(list)
 grouped = df.groupby('Food')
 for name,group in grouped:
     for val in range(0,len(group)):
         foodToIngredient[name].append(str(group.Ingredients.iloc[val]) + "," + str(group.Quantity.iloc[val]) + "," + str(group.Unit.iloc[val]))
 
+## Read the Ingredient list
+#
 Ingredientdf = pd.read_csv("Ingredients1.csv")
 Ingredientlist = Ingredientdf.values
 
@@ -40,6 +56,8 @@ for val in range(0,len(Ingredientlist)):
     InitialStock[val] = Ingredientlist[val][1]
 
 found_ing = False
+## Read all entries from database and group them into subsets based on days.
+#
 mycursor.execute("SELECT * FROM variation")
 for set in range(0,num_subsets):
     Dataset = mycursor.fetchmany(num_entries)
@@ -48,6 +66,8 @@ for set in range(0,num_subsets):
         Cusine = entry[3]       # Get the cusine entry
         Ingredient_val = foodToIngredient[Cusine]
 
+        ## Update the Ingredient list with the new ingredient count modified by the current entry from database
+        #
         for data in Ingredient_val:
             Value = data.split(',')
             IngredientEntry = Value[0]
@@ -74,7 +94,7 @@ for set in range(0,num_subsets):
         ConsumptionIng[ing][set] = IngredientDay[ing][2]
 
 RateConsumption = np.zeros(num_ing)
-# Record all ingredients whose currently quantity is less than 20% of the initial stock.
+# Record all ingredients whose currently quantity is less than 30% of the initial stock.
 threshold = 0.3
 StockAvailable = []
 Consumptionall = [[]] * num_ing
@@ -89,6 +109,8 @@ for ing in range(0,len(ConsumptionIng)):
 #print(Consumptionall)
 most_consumed = nlargest(10,RateConsumption)
 
+## Insert most consumed, least consumed items into Inventory Database
+#
 ingredient_consumed = []
 found = False
 for value in most_consumed:
@@ -137,6 +159,8 @@ for val in range(0,len(most_consumed)):
 #plt.title('Least consumed ingredients')
 #plt.show()
 
+## Insert alerts section items into LowStock Database
+#
 print("Low Stock Availability list")
 print(StockAvailable)
 for val in range(0,len(StockAvailable)):

@@ -1,3 +1,6 @@
+# Written by : Yashasvi Khatavkar
+# Tested by : Yashasvi Khatavkar
+
 import mysql.connector
 import numpy as np
 import names

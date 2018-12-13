@@ -1,3 +1,6 @@
+# Written by: Akshay Gangal
+# Tested by: Akshay Gangal
+
 import mysql.connector
 import numpy as np
 import Common
