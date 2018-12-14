@@ -1,1 +1,0 @@
-This folder will contain the Data clustering and classification methods.
